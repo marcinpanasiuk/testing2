@@ -6,17 +6,15 @@ Office.initialize = function (reason) { };
 function onNewMessageComposeHandler(event) {
 
     Office.context.roamingSettings.saveAsync(function(asyncResult) {
+        var status = 'OK';
         if (asyncResult.status == Office.AsyncResultStatus.Failed) {
-            console.log(asyncResult.error);
-            var status = asyncResult.error;
+            console.error(asyncResult.error);
+            status = 'Error occurred while saving roaming data, see console for details';
         }
-        else {
-            console.log('OK');
-            status = 'OK';
-        }
+        var signature = `<strong style='font-size: 20px;'> ${status} </strong>`;
+        Office.context.mailbox.item.body.setSignatureAsync(signature, { coercionType: "html" }, function () { event.completed(); });
     });
-    var signature = `<strong style='font-size: 25px;'> ${status.toString()} </strong>`;
-    Office.context.mailbox.item.body.setSignatureAsync(signature, { coercionType: "html" }, function () { event.completed(); });
+   
 }
 
 Office.actions.associate("onNewMessageComposeHandler", onNewMessageComposeHandler);
