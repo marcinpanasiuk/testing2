@@ -6,7 +6,7 @@ Office.initialize = function (reason) { };
 function onNewMessageComposeHandler(event) {
 
     Office.context.roamingSettings.saveAsync(function(asyncResult) {
-        if (asyncResult.status == AsyncResultStatus.Failed) {
+        if (asyncResult.status == Office.AsyncResultStatus.Failed) {
             console.log(asyncResult.error);
             var status = asyncResult.error;
         }
