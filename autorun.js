@@ -4,20 +4,22 @@ Office.initialize = function (reason) { };
  * Handles the OnNewMessageCompose event.
  */
 function onNewMessageComposeHandler(event) {
+    var xmlhttp = new XMLHttpRequest();
     
-    Office.context.roamingSettings.set("test-key", "test-value");
-
-    Office.context.roamingSettings.saveAsync(function(asyncResult) {
-        var status = 'OK';
-        if (asyncResult.status == Office.AsyncResultStatus.Failed) {
-            console.error(asyncResult.error);
-            status = 'Error occurred while saving roaming data, see console for details';
-        }
-        
-        var signature = `<strong style='font-size: 20px;'> ${status} </strong>`;
+    xmlhttp.onload = function() {
+        var signature = `<strong style='font-size: 20px; font-color: greeen'>Success: ${xmlhttp.responseText} </strong>`;
         Office.context.mailbox.item.body.setSignatureAsync(signature, { coercionType: "html" }, function () { event.completed(); });
-    });
-   
+    }
+    
+    xmlhttp.onerror = function() {
+        var signature = `<strong style='font-size: 20px; font-color: red'>Error: ${xmlhttp.responseText} </strong>`;
+        Office.context.mailbox.item.body.setSignatureAsync(signature, { coercionType: "html" }, function () { event.completed(); });
+    }
+    
+    xmlhttp.open('GET', '/api/get', true);
+    xmlhttp.setRequestHeader("Content-Type", "application/json");
+    
+    xmlhttp.send();
 }
 
 Office.actions.associate("onNewMessageComposeHandler", onNewMessageComposeHandler);
