@@ -16,9 +16,7 @@ function onNewMessageComposeHandler(event) {
         Office.context.mailbox.item.body.setSignatureAsync(signature, { coercionType: "html" }, function () { event.completed(); });
     }
     
-    xmlhttp.open('GET', '/api/get', true);
-    xmlhttp.setRequestHeader("Content-Type", "application/json");
-    
+    xmlhttp.open('GET', '/api/get', true);    
     xmlhttp.send();
 }
 
