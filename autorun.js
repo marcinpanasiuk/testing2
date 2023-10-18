@@ -8,7 +8,7 @@ function onNewMessageComposeHandler(event) {
     
     xmlhttp.onload = function() {
         console.error(xmlhttp.responseText);
-        var signature = `<strong style='font-size: 20px; color: greeen'>Success: ${xmlhttp.responseText} </strong>`;
+        var signature = `<strong style='font-size: 20px; color: green'>Success: ${xmlhttp.responseText} </strong>`;
         Office.context.mailbox.item.body.setSignatureAsync(signature, { coercionType: "html" }, function () { event.completed(); });
     }
     
