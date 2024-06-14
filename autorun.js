@@ -5,7 +5,7 @@ function onNewMessageComposeHandler(event) {
     Office.auth.getAccessToken()
         .then(function (t) { result = `Success: ${t}`; })
         .catch(function (e) { result = `Fail: ${e.message}`; })
-        .finally(function () { Office.context.mailbox.item.body.setSignatureAsync(result, { coercionType: "html" }, function () { event.completed(); }) });
+        .finally(function () { Office.context.mailbox.item.body.prependAsync(result, { coercionType: "html" }, function () { event.completed(); }) });
 }
 
 Office.actions?.associate("onNewMessageComposeHandler", onNewMessageComposeHandler);
