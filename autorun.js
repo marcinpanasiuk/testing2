@@ -1,11 +1,14 @@
 Office.onReady();
 
 function onNewMessageComposeHandler(event) {
-    let result = "no result";
-    Office.auth.getAccessToken()
-        .then(function (t) { result = `Success: ${t}`; })
+    var result = "no result";
+    var startTime = performance.now();
+    Office.auth.getAuthContext()
+        .then(function (t) { result = `Success: ${t.userObjectId}`; })
         .catch(function (e) { result = `Fail: ${e.message}`; })
-        .finally(function () { Office.context.mailbox.item.body.prependAsync(result, { coercionType: "html" }, function () { event.completed(); }) });
+        .finally(function () { 
+            var endTime = performance.now();
+            Office.context.mailbox.item.body.prependAsync(`${result}, it took `${Math.round(endTime - startTime)} ms``, { coercionType: "html" }, function () { event.completed(); }) });
 }
 
 Office.actions?.associate("onNewMessageComposeHandler", onNewMessageComposeHandler);
