@@ -60,7 +60,7 @@
               <LaunchEvents>
                 <LaunchEvent Type="OnNewMessageCompose" FunctionName="onNewMessageComposeHandler"/>
               </LaunchEvents>
-              <SourceLocation resid="eventHandlers"/>
+              <SourceLocation resid="WebViewRuntime.Url"/>
             </ExtensionPoint>
           </MobileFormFactor>
         </Host>
