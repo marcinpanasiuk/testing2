@@ -3,7 +3,7 @@ Office.onReady();
 /** inserts a signature automatically when a message is composed or a recipient/sender is changed */
 function insertSignature(event) {
     Office.context.mailbox.item.body.setSignatureAsync(`
-    <table">
+    <table>
       <tbody>
         <tr>
           <td style="text-align: center">Repro</td>
