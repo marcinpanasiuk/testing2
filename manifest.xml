@@ -50,7 +50,9 @@
           <DesktopFormFactor>
             <ExtensionPoint xsi:type="LaunchEvent">
               <LaunchEvents>
-                <LaunchEvent Type="OnNewMessageCompose" FunctionName="onNewMessageComposeHandler"/>
+                <LaunchEvent Type="OnNewMessageCompose" FunctionName="insertSignature"/>
+                <LaunchEvent Type="OnMessageRecipientsChanged" FunctionName="insertSignature"/>
+                <LaunchEvent Type="OnMessageFromChanged" FunctionName="insertSignature"/>
               </LaunchEvents>
               <SourceLocation resid="WebViewRuntime.Url"/>
             </ExtensionPoint>
@@ -58,7 +60,9 @@
           <MobileFormFactor>
             <ExtensionPoint xsi:type="LaunchEvent">
               <LaunchEvents>
-                <LaunchEvent Type="OnNewMessageCompose" FunctionName="onNewMessageComposeHandler"/>
+                <LaunchEvent Type="OnNewMessageCompose" FunctionName="insertSignature"/>
+                <LaunchEvent Type="OnMessageRecipientsChanged" FunctionName="insertSignature"/>
+                <LaunchEvent Type="OnMessageFromChanged" FunctionName="insertSignature"/>
               </LaunchEvents>
               <SourceLocation resid="WebViewRuntime.Url"/>
             </ExtensionPoint>
