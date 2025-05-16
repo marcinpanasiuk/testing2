@@ -2,7 +2,7 @@ Office.onReady();
 
 /** inserts a signature automatically when a message is composed or a recipient/sender is changed */
 function insertSignature(event) {
-  Office.context.mailbox.item.body.setSignatureAsync(`
+    Office.context.mailbox.item.body.setSignatureAsync(`
     <table">
       <tbody>
         <tr>
@@ -10,10 +10,9 @@ function insertSignature(event) {
         </tr>  
       </tbody>
     </table>        
-  `, { coercionType: "html" }, function (asyncResult) { 
-      event.completed(); 
+  `, { coercionType: "html" }, function (asyncResult) {
+        event.completed();
     });
-  });
 }
 
 Office.actions?.associate("insertSignature", insertSignature);
